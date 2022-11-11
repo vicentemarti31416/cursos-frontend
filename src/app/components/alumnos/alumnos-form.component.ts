@@ -13,6 +13,7 @@ export class AlumnosFormComponent implements OnInit {
 
   alumno: Alumno = new Alumno();
   error: any;
+  fotoSeleccionada: File;
 
   constructor(
     private alumnoService: AlumnoService,
@@ -51,6 +52,29 @@ export class AlumnosFormComponent implements OnInit {
         console.log(this.error);
       }
     });
+  }
+
+  seleccionarFoto(event: any): void {
+    this.fotoSeleccionada = event.target.files[0];
+    if (this.fotoSeleccionada.name.endsWith('xcf') == true || this.fotoSeleccionada.type.indexOf('image') < 0) {
+      Swal.fire('Error al seleccionar la foto', 'Debe seleccionar un archivo de tipo imágen', 'error')
+      this.fotoSeleccionada = null;
+    }
+  }
+
+  public crearConFoto(): void {
+    this.alumnoService.addAlumnoWithPhoto(this.alumno, this.fotoSeleccionada).subscribe(alumno => {
+      Swal.fire('Alumno creado correctamente', '', 'success');
+      this.router.navigate(['/']);
+    }
+    )
+  }
+
+  public editarConFoto(): void {
+    this.alumnoService.updateAlumnoWithPhoto(this.alumno, this.fotoSeleccionada).subscribe(alumno => {
+      Swal.fire('Alumno actualizado correctamente', '', 'success');
+      this.router.navigate(['/']);
+    })
   }
 
 }
