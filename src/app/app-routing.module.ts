@@ -8,6 +8,7 @@ import { ExamenesComponent } from './components/examenes/examenes.component';
 const routes: Routes = [
   { path: '', component: AlumnosComponent, pathMatch: 'full' },
   { path: 'alumnos', component: AlumnosComponent },
+  { path: 'alumnos/page/:page', component: AlumnosComponent },
   { path: 'alumnos/form', component: AlumnosFormComponent },
   { path: 'alumnos/form/:id', component: AlumnosFormComponent },
   { path: 'cursos', component: CursosComponent },

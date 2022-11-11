@@ -10,6 +10,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AlumnosFormComponent } from './components/alumnos/alumnos-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { PaginadorComponent } from './components/paginador/paginador.component';
+
 
 @NgModule({
   declarations: [
@@ -18,14 +21,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AlumnosComponent,
     ExamenesComponent,
     CursosComponent,
-    AlumnosFormComponent
+    AlumnosFormComponent,
+    PaginadorComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

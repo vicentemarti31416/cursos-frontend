@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import Swal from 'sweetalert2';
@@ -12,14 +13,27 @@ import Swal from 'sweetalert2';
 export class AlumnosComponent implements OnInit {
 
   alumnos: Alumno[] = [];
+  paginador: any;
 
   constructor(
-    private alumnoService: AlumnoService
+    private alumnoService: AlumnoService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.alumnoService.findAll().subscribe(alumnos => this.alumnos = alumnos);
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      let page: number = +params.get('page');
+      if (!page) {
+        page = 0;
+      }
+      this.alumnoService.findAllPageable(page).subscribe(response => {
+        this.alumnos = response.content as Alumno[];
+        this.paginador = response;
+        });
+      });
   }
+
 
   delete(alumno: Alumno): void {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -41,7 +55,8 @@ export class AlumnosComponent implements OnInit {
       if (result.isConfirmed) {
         this.alumnoService.deleteById(alumno.id).subscribe(
           response => {
-            this.alumnos = this.alumnos.filter(alumno => alumno !== alumno)
+            this.alumnos = this.alumnos.filter(alumno => alumno !== alumno);
+            this.router.navigate(['/']);
             swalWithBootstrapButtons.fire(
               'Borrado',
               `El alumno ${alumno.nombre} ha sido borrado`,

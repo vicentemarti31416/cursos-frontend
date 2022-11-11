@@ -19,11 +19,8 @@ export abstract class CommonService<T extends Common> {
     return this.httpClient.get<T[]>(this.url);
   }
 
-  public findAllPageable(page: string, size: string): Observable<any> {
-    const params: HttpParams = new HttpParams()
-    .set('page', page)
-    .set('size', size);
-    return this.httpClient.get<any>(`${this.url}/pageable`, {params: params});
+  public findAllPageable(page: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.url}/page/${page}`);
   }
 
   public findById(id: number): Observable<T> {
