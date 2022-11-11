@@ -8,6 +8,8 @@ import { ExamenesComponent } from './components/examenes/examenes.component';
 import { CursosComponent } from './components/cursos/cursos.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { AlumnosFormComponent } from './components/alumnos/alumnos-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     AlumnosComponent,
     ExamenesComponent,
-    CursosComponent
+    CursosComponent,
+    AlumnosFormComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

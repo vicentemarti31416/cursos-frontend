@@ -2,7 +2,8 @@
     <div class="card-header">
         <h1 class="">Lista de alumnos</h1>
     </div>
-    <div class="card-body">
+    <div *ngIf="alumnos?.length <= 0" class="alert alert-warning mt-3">No hay alumnos guardados</div>
+    <div *ngIf="alumnos?.length > 0" class="card-body">
         <table class="table table-striped table-hover text-center">
             <thead>
                 <tr>
@@ -11,6 +12,8 @@
                     <th scope="col">Apellidos</th>
                     <th scope="col">Email</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -20,9 +23,12 @@
                     <td>{{alumno.apellido}}</td>
                     <td>{{alumno.email}}</td>
                     <td>{{alumno.created | date: 'dd-MM-yyyy'}}</td>
+                    <td><button class="btn btn-primary btn-sm" [routerLink]="['/alumnos/form', alumno.id]">Editar</button></td>
+                    <td><button class="btn btn-warning btn-sm" (click)="delete(alumno)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-primary mt-3 d-block" [routerLink]="['/alumnos/form']">Crear alumno</button>
     </div>
     <div class="card-footer text-muted">
       Powered by Vicente Martí

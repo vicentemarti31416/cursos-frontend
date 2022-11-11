@@ -4,7 +4,7 @@ export class Alumno implements Common {
 
     id: number;
     nombre: string;
-    aoellido: string;
+    apellido: string;
     email: string;
     created: string;
     photoHashCode: number;
