@@ -1,6 +1,7 @@
 <div class="card mt-5">
     <div class="card-header">
-        <h1 class="text-center mt-2">Crear alumno</h1>
+        <h1 *ngIf="!alumno.id" class="text-center mt-2">Crear alumno</h1>
+        <h1 *ngIf="alumno.id" class="text-center mt-2">Actualizar alumno</h1>
     </div>
     <div class="card-body">
         <form>

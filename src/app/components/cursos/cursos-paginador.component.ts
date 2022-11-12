@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-paginador',
-  templateUrl: './paginador.component.html',
-  styleUrls: ['./paginador.component.scss']
+  selector: 'app-cursos-paginador',
+  templateUrl: './cursos-paginador.component.html',
+  styleUrls: ['./cursos-paginador.component.scss']
 })
-export class PaginadorComponent implements OnInit, OnChanges {
+export class CursosPaginadorComponent implements OnInit {
 
   @Input() paginador: any;
 

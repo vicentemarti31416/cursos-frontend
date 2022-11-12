@@ -1,0 +1,22 @@
+<div class="card mt-5">
+    <div class="card-header">
+        <h1 *ngIf="!examen.id" class="text-center mt-2">Crear examen</h1>
+        <h1 *ngIf="examen.id" class="text-center mt-2">Actualizar examen</h1>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" name="nombre" [(ngModel)]="examen.name" class="form-control">
+                <div *ngIf="error && error.nombre" class="form-text text-danger">{{error?.nombre}}</div>
+            </div>
+        </form>
+        <button *ngIf="!examen.id else elseBlock" class="btn btn-primary mt-3 d-block" (click)="save()">Crear examen</button>
+        <ng-template #elseBlock>
+            <button class="btn btn-primary mt-3 d-block" (click)="uodate()">Actualizar examen</button>
+        </ng-template>
+    </div>
+    <div class="card-footer text-muted text-center">
+        Powered by Vicente Martí
+    </div>
+</div>

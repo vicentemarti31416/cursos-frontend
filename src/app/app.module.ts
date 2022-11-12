@@ -10,8 +10,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { AlumnosFormComponent } from './components/alumnos/alumnos-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import { PaginadorComponent } from './components/paginador/paginador.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { CursosFormComponent } from './components/cursos/cursos-form.component';
+import { ExamenesPaginadorComponent } from './components/examenes/examenes-paginador.component';
+import { AlumnosPaginadorComponent } from './components/alumnos/alumnos-paginador.component';
+import { CursosPaginadorComponent } from './components/cursos/cursos-paginador.component';
+import { ExamenesFormComponent } from './components/examenes/examenes-form.component';
 
 
 @NgModule({
@@ -22,7 +26,11 @@ import { PaginadorComponent } from './components/paginador/paginador.component';
     ExamenesComponent,
     CursosComponent,
     AlumnosFormComponent,
-    PaginadorComponent
+    CursosFormComponent,
+    ExamenesPaginadorComponent,
+    AlumnosPaginadorComponent,
+    CursosPaginadorComponent,
+    ExamenesFormComponent
   ],
   imports: [
     HttpClientModule,

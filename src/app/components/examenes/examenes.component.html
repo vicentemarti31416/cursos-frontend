@@ -1,1 +1,39 @@
-<p>examenes works!</p>
+<div class="card text-center mt-5">
+    <div class="card-header">
+        <h1 class="">Lista de examenes</h1>
+    </div>
+    <div *ngIf="examenes?.length <= 0" class="alert alert-warning mt-3">No hay examenes guardados</div>
+    <div *ngIf="examenes?.length > 0" class="card-body">
+        <table class="table table-striped table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Asignatura</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let examen of examenes">
+                    <td>{{examen.id}}</td>
+                    <td>{{examen.name}}</td>
+                    <td>{{examen.created | date: 'dd-MM-yyyy'}}</td>
+                    <td>Asignatura</td>
+                    <td><button class="btn btn-secondary btn-sm" >Preguntas</button></td>
+                    <td><button class="btn btn-primary btn-sm" [routerLink]="['/examenes/form', examen.id]">Editar</button></td>
+                    <td><button class="btn btn-warning btn-sm" (click)="delete(examen)">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between mt-2">
+            <button class="btn btn-primary" [routerLink]="['/examenes/form']">Crear examen</button>
+            <app-examenes-paginador *ngIf="paginador" [paginador]="paginador"></app-examenes-paginador>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Powered by Vicente Martí
+    </div>
+</div>

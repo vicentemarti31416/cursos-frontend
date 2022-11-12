@@ -1,1 +1,39 @@
-<p>cursos works!</p>
+<div class="card text-center mt-5">
+    <div class="card-header">
+        <h1 class="">Lista de cursos</h1>
+    </div>
+    <div *ngIf="cursos?.length <= 0" class="alert alert-warning mt-3">No hay cursos guardados</div>
+    <div *ngIf="cursos?.length > 0" class="card-body">
+        <table class="table table-striped table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let curso of cursos">
+                    <td>{{curso.id}}</td>
+                    <td>{{curso.name}}</td>
+                    <td>{{curso.created | date: 'dd-MM-yyyy'}}</td>
+                    <td><button class="btn btn-secondary btn-sm" >Alumnos</button></td>
+                    <td><button class="btn btn-secondary btn-sm" >Examenes</button></td>
+                    <td><button class="btn btn-primary btn-sm" [routerLink]="['/cursos/form', curso.id]">Editar</button></td>
+                    <td><button class="btn btn-warning btn-sm" (click)="delete(curso)">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between mt-2">
+            <button class="btn btn-primary" [routerLink]="['/cursos/form']">Crear curso</button>
+            <app-cursos-paginador *ngIf="paginador" [paginador]="paginador"></app-cursos-paginador>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Powered by Vicente Martí
+    </div>
+</div>
