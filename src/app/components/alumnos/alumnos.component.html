@@ -7,7 +7,7 @@
         <table class="table table-striped table-hover text-center">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col"></th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
                     <th scope="col">Email</th>
@@ -18,7 +18,15 @@
             </thead>
             <tbody>
                 <tr *ngFor="let alumno of alumnos">
-                    <td>{{alumno.id}}</td>
+                    <td>
+                        <img *ngIf="alumno.photoHashCode else elseBlock"
+                            [src]="'http://localhost:8090/usuarios/photo/' + alumno.id + '?photoHashCode=' + alumno.photoHashCode"
+                            style="height: 1.5rem;width: auto;" class="card-img-top" alt="House picture">
+                        <ng-template #elseBlock>
+                            <img *ngIf="!alumno.photoHashCode" [src]="'/assets/images/default.png'" style="height: 1.5rem;width: auto;"
+                                class="card-img-top" alt="House picture">
+                        </ng-template>
+                    </td>
                     <td>{{alumno.nombre}}</td>
                     <td>{{alumno.apellido}}</td>
                     <td>{{alumno.email}}</td>
