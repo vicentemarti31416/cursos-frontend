@@ -8,6 +8,7 @@ export class Examen implements Common {
     name: string;
     created: string;
     preguntas: Pregunta[] = [];
-    asignatura: Asignatura;
+    asignaturaPadre: Asignatura;
+    asignaturaHija: Asignatura;
     isAnswered: boolean;
 }

@@ -10,11 +10,41 @@
                 <input type="text" id="nombre" name="nombre" [(ngModel)]="examen.name" class="form-control">
                 <div *ngIf="error && error.nombre" class="form-text text-danger">{{error?.nombre}}</div>
             </div>
+            <div class="form-group mb-3">
+                <label for="asignaturasPadre">Temas</label>
+                <select (change)="cargarHijos()" [compareWith]="compararAsignaturas" [(ngModel)]="examen.asignaturaPadre"
+                    name="asignaturaPadre" class="form-select" id="asignaturaPadre">
+                    <option [ngValue]="undefined">Selecciona un tema</option>
+                    <option *ngFor="let asignatura of asignaturasPadre" [ngValue]="asignatura">{{asignatura.name}}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="error?.asignaturaPadre">
+                    {{ error.asignaturaPadre }}
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="asignaturasPadre">Asignaturas</label>
+                <select [compareWith]="compararAsignaturas" [(ngModel)]="examen.asignaturaHija"
+                    name="asignaturaHija" class="form-select" id="asignaturaHija">
+                    <option [ngValue]="undefined">Selecciona un tema</option>
+                    <option *ngFor="let asignatura of asignaturasHija" [ngValue]="asignatura">{{asignatura.name}}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="error?.asignaturaHija">
+                    {{ error.asignaturaHija }}
+                </div>
+            </div>
+            <div class="input-group mb-3" *ngFor="let pregunta of examen.preguntas; let i = index">
+                <span class="input-group-text">Pregunta {{i+1}}:</span>
+                <input type="text" class="form-control" value="{{pregunta.text}}" (change)="asignarTexto(pregunta, $event)">
+                <button (click)="eliminarPregunta(pregunta)" class="btn btn-sm btn-danger">Eliminar</button>
+            </div>
         </form>
-        <button *ngIf="!examen.id else elseBlock" class="btn btn-primary mt-3 d-block" (click)="save()">Crear examen</button>
-        <ng-template #elseBlock>
-            <button class="btn btn-primary mt-3 d-block" (click)="uodate()">Actualizar examen</button>
-        </ng-template>
+        <div class="d-flex ">
+            <button *ngIf="!examen.id else elseBlock" class="btn btn-primary mt-3 d-block" (click)="this.save()">Crear examen</button>
+            <ng-template #elseBlock>
+                <button class="btn btn-primary mt-3 d-block" (click)="this.update()">Actualizar examen</button>
+            </ng-template>
+            <button class="btn btn-secondary mx-5 mt-3 d-block" (click)="this.crearPregunta()">Crear pregunta</button>
+        </div>
     </div>
     <div class="card-footer text-muted text-center">
         Powered by Vicente Martí
