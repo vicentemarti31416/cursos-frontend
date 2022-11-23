@@ -1,0 +1,81 @@
+<div class="card text-center mt-5">
+    <div class="card-header">
+        <h1 class="">Lista de alumnos del curso: {{curso?.name}}</h1>
+    </div>
+    <div *ngIf="curso?.alumnos?.length <= 0" class="alert alert-warning mt-3">No hay alumnos inscritos en el curso</div>
+    <div class="card-body">
+        <table *ngIf="curso?.alumnos?.length > 0" class="table table-striped table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let alumno of this.curso.alumnos" class="justify-content-between">
+                    <td>
+                        <img *ngIf="alumno.photoHashCode else elseBlock"
+                            [src]="'http://localhost:8090/usuarios/photo/' + alumno.id + '?photoHashCode=' + alumno.photoHashCode"
+                            style="height: 1.5rem;width: auto;" class="card-img-top" alt="House picture">
+                        <ng-template #elseBlock>
+                            <img *ngIf="!alumno.photoHashCode" [src]="'/assets/images/default.png'" style="height: 1.5rem;width: auto;"
+                                class="card-img-top" alt="House picture">
+                        </ng-template>
+                    </td>
+                    <td>{{alumno.id}}</td>
+                    <td>{{alumno.nombre}}</td>
+                    <td>{{alumno.apellido}}</td>
+                    <td>{{alumno.email}}</td>
+                    <td>{{alumno.created | date: 'dd-MM-yyyy'}}</td>
+                    <td><button (click)="this.deseleccionarAlumnos(alumno)" class="btn btn-warning btn-sm">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex mt-2">
+            <button class="btn btn-primary">Guardar cambios</button>
+            <form class="mx-5">
+                <input autofocus="true" (keyup)="this.filtrar($event.target.value)" [(ngModel)]="this.str" name="str" class="form-control me-2" type="search" placeholder="Search...">
+            </form>
+            <h3 *ngIf="alumnosFiltrados?.length > 0">Seleccione alumnos para asignar al curso</h3>
+        </div>
+        <table *ngIf="alumnosFiltrados.length > 0" class="table table-hover text-center mt-5">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let alumno of alumnosFiltrados" class="justify-content-between">
+                    <td>
+                        <img *ngIf="alumno.photoHashCode else elseBlock"
+                            [src]="'http://localhost:8090/usuarios/photo/' + alumno.id + '?photoHashCode=' + alumno.photoHashCode"
+                            style="height: 1.5rem;width: auto;" class="card-img-top" alt="House picture">
+                        <ng-template #elseBlock>
+                            <img *ngIf="!alumno.photoHashCode" [src]="'/assets/images/default.png'" style="height: 1.5rem;width: auto;"
+                                class="card-img-top" alt="House picture">
+                        </ng-template>
+                    </td>
+                    <td>{{alumno.id}}</td>
+                    <td>{{alumno.nombre}}</td>
+                    <td>{{alumno.apellido}}</td>
+                    <td>{{alumno.email}}</td>
+                    <td>{{alumno.created | date: 'dd-MM-yyyy'}}</td>
+                    <td><button (click)="asignarAlumno(alumno)" class="btn btn-sm btn-success">Añadir</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer text-muted">
+        Powered by Vicente Martí
+    </div>

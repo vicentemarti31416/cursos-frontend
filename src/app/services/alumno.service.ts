@@ -16,6 +16,10 @@ export class AlumnoService extends CommonService<Alumno> {
     super(httpClient);
   }
 
+  public filtrar(str: string): Observable<Alumno[]> {
+    return this.httpClient.get<Alumno[]>(`${this.url}/buscar/${str}`);
+  }
+
   public addAlumnoWithPhoto(alumno: Alumno, archivo: File): Observable<Alumno> {
     const formData: FormData = new FormData();
     formData.append('archivo', archivo);

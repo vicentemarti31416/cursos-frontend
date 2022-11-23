@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.scss']
+  
 })
 export class CursosComponent implements OnInit {
 

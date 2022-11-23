@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlumnosFormComponent } from './components/alumnos/alumnos-form.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
+import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.component';
 import { CursosFormComponent } from './components/cursos/cursos-form.component';
 import { CursosComponent } from './components/cursos/cursos.component';
 import { ExamenesFormComponent } from './components/examenes/examenes-form.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'cursos/page/:page', component: CursosComponent },
   { path: 'cursos/form', component: CursosFormComponent },
   { path: 'cursos/form/:id', component: CursosFormComponent },
+  { path: 'cursos/asignar-alumnos/:id', component: AsignarAlumnosComponent },
   { path: 'examenes', component: ExamenesComponent },
   { path: 'examenes/page/:page', component: ExamenesComponent },
   { path: 'examenes/form', component: ExamenesFormComponent },
