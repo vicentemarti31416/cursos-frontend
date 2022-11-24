@@ -17,7 +17,6 @@ export class AsignarAlumnosComponent implements OnInit {
   curso: Curso;
   alumnosInscritos: number[] = [];
   alumnosFiltrados: Alumno[] = [];
-  //cursos: Curso[] = [];
   str: string;
 
   constructor(
@@ -37,10 +36,17 @@ export class AsignarAlumnosComponent implements OnInit {
  
   asignarAlumno(alumno: Alumno): void {
     this.cursoService.asignarAlumno(this.curso.id, alumno).subscribe(curso => {
-      this.cursoService.findById(this.curso.id).subscribe(curso => {
-        this.curso = curso;
+      this.curso.alumnos.push(alumno);
+      this.filtrar(this.str);
+    });
+  }
+
+  quitarAlumno(alumno: Alumno): void {
+    this.cursoService.quitarAlumno(this.curso.id, alumno).subscribe(curso => {
+      this.curso.alumnos.forEach((alumnoCurso, index) => {
+        if (alumnoCurso === alumno) this.curso.alumnos.splice(index, 1);
         this.filtrar(this.str);
-      });
+      })
     });
   }
 

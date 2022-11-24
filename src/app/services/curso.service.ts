@@ -20,4 +20,8 @@ export class CursoService extends CommonService<Curso> {
     return this.httpClient.put<Curso>(`${this.url}/${idCurso}/add-alumno`, alumno, {headers: this.headers});
   }
 
+  public quitarAlumno(idCurso: number, alumno: Alumno): Observable<Curso> {
+    return this.httpClient.put<Curso>(`${this.url}/${idCurso}/remove-alumno`, alumno, {headers: this.headers});
+  }
+
 }
