@@ -17,6 +17,8 @@ import { AlumnosPaginadorComponent } from './components/alumnos/alumnos-paginado
 import { CursosPaginadorComponent } from './components/cursos/cursos-paginador.component';
 import { ExamenesFormComponent } from './components/examenes/examenes-form.component';
 import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.component';
+import { ResponderExamenComponent } from './components/alumnos/responder-examen.component';
+import { VerExamenComponent } from './components/alumnos/ver-examen.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { AsignarAlumnosComponent } from './components/cursos/asignar-alumnos.com
     CursosPaginadorComponent,
     ExamenesFormComponent,
     AsignarAlumnosComponent,
+    ResponderExamenComponent,
+    VerExamenComponent
   ],
   imports: [
     HttpClientModule,

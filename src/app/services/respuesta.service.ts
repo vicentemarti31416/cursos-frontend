@@ -18,11 +18,11 @@ export class RespuestaService {
   constructor(protected http: HttpClient) { }
 
   crear(respuestas: Respuesta[]): Observable<Respuesta[]>{
-    return this.http.post<Respuesta[]>(this.baseEndpoint, respuestas, {headers: this.cabeceras});
+    return this.http.post<Respuesta[]>(`${this.baseEndpoint}/respuestas`, respuestas, {headers: this.cabeceras});
   }
 
   obtenerRespuestasPorAlumnoPorExamen(alumno: Alumno, examen: Examen): Observable<Respuesta[]>{
-    return this.http.get<Respuesta[]>(`${this.baseEndpoint}/alumno/${alumno.id}/examen/${examen.id}`);
+    return this.http.get<Respuesta[]>(`${this.baseEndpoint}/alumnoId/${alumno.id}/examenId/${examen.id}`);
   }
   
 }

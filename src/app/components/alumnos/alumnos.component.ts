@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno';
+import { Curso } from 'src/app/models/curso';
+import { Examen } from 'src/app/models/examen';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import Swal from 'sweetalert2';
 
@@ -21,6 +23,10 @@ export class AlumnosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.buscaralumnos();
+  }
+
+  buscaralumnos(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       let page: number = +params.get('page');
       if (!page) {
@@ -29,8 +35,8 @@ export class AlumnosComponent implements OnInit {
       this.alumnoService.findAllPageable(page).subscribe(response => {
         this.alumnos = response.content as Alumno[];
         this.paginador = response;
-        });
       });
+    });
   }
 
 

@@ -10,5 +10,5 @@ export class Examen implements Common {
     preguntas: Pregunta[] = [];
     asignaturaPadre: Asignatura;
     asignaturaHija: Asignatura;
-    isAnswered: boolean;
+    answered: boolean;
 }

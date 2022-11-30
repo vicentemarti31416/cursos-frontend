@@ -24,4 +24,8 @@ export class CursoService extends CommonService<Curso> {
     return this.httpClient.put<Curso>(`${this.url}/${idCurso}/remove-alumno`, alumno, {headers: this.headers});
   }
 
+  public buscarPorAlumnoId(idAlumno: number): Observable<Curso> {
+    return this.httpClient.get<Curso>(`${this.url}/find-curso/${idAlumno}`)
+  }
+
 }
